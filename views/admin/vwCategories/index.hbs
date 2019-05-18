@@ -1,0 +1,21 @@
+<div class="card shadow">
+    <h4 class="card-header">Categories</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Category</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.categories}}
+                <tr>
+                    <th scope="row">{{CatID}}</th>
+                    <td>{{CatName}}</td>
+                </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
