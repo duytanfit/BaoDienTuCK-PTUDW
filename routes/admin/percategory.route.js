@@ -1,5 +1,5 @@
 var express = require('express');
-var categoryModel = require('../../models/category.model');
+var categoryModel = require('../../models/percategory.model');
 
 var router = express.Router();
 
@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     var p = categoryModel.all();
     p.then(rows => {
         console.log(rows);
-        res.render('admin/vwCategories/index', {
+        res.render('admin/vwPerCategory/listeditor', {
             categories: rows
         });
     }).catch(err => {
@@ -18,8 +18,6 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/add', (req, res) => {
-    res.render('admin/vwCategories/add');
-})
+
 
 module.exports = router;

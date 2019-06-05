@@ -6,7 +6,7 @@ var createConnection = () => {
         port: 8889,
         user: 'root',
         password: 'root',
-        database: 'testmysql'
+        database: 'fit_news_data'
     });
 }
 
@@ -21,7 +21,6 @@ module.exports = {
                 } else {
                     resolve(results);
                 }
-                //console.log(results);
                 connection.end();
             });
         });
