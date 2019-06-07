@@ -1,14 +1,13 @@
 <div class="card shadow">
-    <h4 class="card-header">Danh sách Editor
-
-    </h4>
-    <table class="table table-bordered">
+    <h4 class="card-header">Danh sách Editor </h4>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">IDUser</th>
+                <th class="text-center" scope="col">IDUser</th>
                 <th scope="col">Tên Editor</th>
+                <th scope="col">Email</th>
                 <th scope="col" class="text-right">
-                    <a class="btn btn-outoutline-success" href="/admin/categories/add" role="button">
+                    <a class="btn btn-outline-success" href="/admin/percategory/add" role="button">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Xem chi tiết
                     </a>
@@ -19,11 +18,12 @@
         <tbody>
             {{#each this.categories}}
             <tr>
-                <th scope="row">{{IDUser}}</th>
+                <th class="text-center" scope="row">{{IDUser}}</th>
                 <td>{{FirstName}}</td>
+                <td>{{Email}}</td>
                 <td class="text-right">
-                    <a class="btn btn-primary btn-sm" href="javascript:;" role="button">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <a class="btn btn-primary" href="/admin/percategory/view/{{IDUser}}" role="button">
+                        Xem
                     </a>
                 </td>
             </tr>
