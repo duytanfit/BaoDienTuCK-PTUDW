@@ -14,10 +14,7 @@ router.get('/', (req, res) => {
     }).catch(err => {
         console.log(err);
     });
-
-
 })
-
 
 router.get('/view/:id', (req, res) => {
     var id = req.params.id;
@@ -26,7 +23,7 @@ router.get('/view/:id', (req, res) => {
         console.log(typeof id);
         console.log(id.toString());
         var iduser = id;
-        if(rows.length > 0){
+        if(rows.length >= 0){
             res.render('admin/vwPerCategory/view', {
                 error: false,
                 categories: rows,
@@ -38,11 +35,6 @@ router.get('/view/:id', (req, res) => {
             });
         }
         console.log(rows);
-
-       // res.render('admin/vwPerCategory/view', {
-         //   categories: rows
-      //  });
-
         }).catch(err => {
         console.log(err);
         res.end('error occured')
@@ -50,15 +42,16 @@ router.get('/view/:id', (req, res) => {
 
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id/:name', (req, res) => {
     var id = req.params.id;
+    var name = req.params.name;
     var p = categoryModel.choose(id);
     p.then(rows => {
         console.log(rows);
-        var iduser = id;
         res.render('admin/vwPerCategory/edit', {
             editchuyenmuc: rows,
-            iduser: iduser
+            id:id,
+            name:name
         });
     }).catch(err => {
         console.log(err);
@@ -83,11 +76,35 @@ router.get('/add/:id', (req, res) => {
 })
 
 router.post('/add', (req,res) =>{
-    var id = req.params.id;
     
+    console.log(req.body.IDUser + "lalalalalalalalalalala");
+    console.log(req.body.NameCategory + "lalalalalalalalalalala");
     categoryModel.add(req.body.IDUser,req.body.NameCategory)
-    .then (id =>{
+    .then (n =>{
         res.redirect(`view/${req.body.IDUser}`)
+    }).catch(err =>{
+        console.log(err);
+    })
+})
+
+
+router.post('/update/:name', (req,res) =>{
+    var name = req.params.name;
+    console.log(req.body.NameCategory);
+    console.log(req.body.IDUser);
+    console.log(name);
+    categoryModel.update(req.body.IDUser,req.body.NameCategory,name)
+    .then (id =>{
+        res.redirect(`/admin/percategory/view/${req.body.IDUser}`)
+    }).catch(err =>{
+        console.log(err);
+    })
+})
+
+router.post('/delete', (req,res) =>{
+    categoryModel.delete(req.body.IDUser,req.body.NameCategory)
+    .then (id =>{
+        res.redirect(`/admin/percategory/view/${req.body.IDUser}`)
     }).catch(err =>{
         console.log(err);
     })

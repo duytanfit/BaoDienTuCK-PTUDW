@@ -30,14 +30,48 @@ module.exports = {
     add: (id,name)=>{
         return new Promise((resolve, reject) => {
             var sql= `insert into permissioncategory ( IDUser, IDCategory)
-            SELECT DISTINCT p.IDUser, c.IDCategory 
-            FROM category c, permissioncategory P
+            SELECT DISTINCT ?, c.IDCategory 
+            FROM category c, permissioncategory p
             WHERE c.NameCategory=?
-            and P.IDUser=?
             `
             var connection = createConnection();
             connection.connect();
-            connection.query(sql,[name,id], function(error, value) {
+            connection.query(sql,[id,name], function(error, value) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(value.insertID);
+                }
+                connection.end();
+            });
+        });
+    },
+
+
+    update: (iduser,namenew,name)=>{
+        return new Promise((resolve, reject) => {
+            var sql= `update permissioncategory p, category c set p.IDCategory= c.IDCategory  where p.IDUser=?
+            and c.NameCategory=?
+            and exists (SELECT * from category c2 where c2.NameCategory=? and  p.IDCategory= c2.IDCategory) `
+            var connection = createConnection();
+            connection.connect();
+            connection.query(sql,[iduser,namenew,name], function(error, value) {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(value.insertID);
+                }
+                connection.end();
+            });
+        });
+    },
+
+    delete: (iduser,idcategory)=>{
+        return new Promise((resolve, reject) => {
+            var sql= `DELETE p.* FROM permissioncategory p, category c WHERE p.IDUser = ? and c.NameCategory= ? and c.IDCategory=p.IDCategory`
+            var connection = createConnection();
+            connection.connect();
+            connection.query(sql,[iduser,idcategory], function(error, value) {
                 if (error) {
                     reject(error);
                 } else {

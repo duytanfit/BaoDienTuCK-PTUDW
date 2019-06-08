@@ -20,13 +20,20 @@
                 <th class="text-center" scope="row">{{NameParrent}}</th>
                  <td>{{NameCategory}}</td>
                 <td class="text-right">
-                    <a class="btn btn-primary" href="/admin/percategory/edit/{{IDUser}}" role="button">
+                    <a class="btn btn-primary" href="/admin/percategory/edit/{{IDUser}}/{{NameCategory}}" role="button">
                         Chỉnh sửa
                     </a>
                 </td>
             </tr>
             {{/each}}
-
+            
         </tbody>
+
+        
     </table>
+
+    <a class="btn btn-primary mb-3" href="/admin/percategory" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        Quay về danh sách Editor
+      </a>
 </div>

@@ -14,7 +14,7 @@ module.exports = {
     },
 
     single: id =>{
-        return db.load(`SELECT user.IDUser, NameParrent, NameCategory FROM  user , permissioncategory, category, parrentcategory
+        return db.load(`SELECT user.IDUser, NameParrent, NameCategory, category.IDCategory FROM  user , permissioncategory, category, parrentcategory
         WHERE user.IDUser = permissioncategory.IDUser 
         AND permissioncategory.IDCategory= category.IDCategory 
         AND user.IDUser = "${id}" 
@@ -31,7 +31,15 @@ module.exports = {
 
     add:(id,name)=>{
         return db.add(id,name);
+    },
+
+    update:(id,namenew,name)=>{
+        return db.update(id,namenew,name);
+    },
+    delete:(iduser,idcategory)=>{
+        return db.delete(iduser,idcategory);
     }
+
 
     
 };
