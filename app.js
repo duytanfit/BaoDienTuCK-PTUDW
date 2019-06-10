@@ -32,6 +32,7 @@ app.get('/', function(req, res) {
 
 app.use('/admin/percategory', require('./routes/admin/percategory.route'));
 app.use('/admin/renewal', require('./routes/admin/accrenewal.route'));
+app.use('/writter', require('./routes/writter/write.route'));
 
 app.listen(3333, () => {
     console.log('Web Server running at localhost:3333');

@@ -1,0 +1,47 @@
+{{#section 'js'}}
+<script
+  src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+  $(function () {
+    tinymce.init({
+      selector: '#txtContext',
+      height: 500,
+      menubar: false,
+      plugins: 'paste image link autolink lists table media',
+      toolbar: [
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+        'forecolor backcolor',
+        'table link image media',
+      ],
+    });
+  })
+</script>
+{{/section}}
+<div class="card shadow">
+  <h4 class="card-header">
+    WYSIWYG
+  </h4>
+  <div class="card-body">
+    <form method="POST">
+      <div class="form-group">
+        <label for="txtFullDes">Tiêu đề</label>
+        <textarea class="form-control" id="txtTittle" name="Tittle"></textarea>
+        <label for="txtFullDes">Tóm tắt</label>
+        <textarea class="form-control" id="txtSortContext" name="SortContext"></textarea>
+        <label for="txtFullDes">Chuyên mục</label>
+        <select class="custom-select" id="txtNameCategory" name="NameCategory">
+             <option selected>Chọn chuyên mục</option>
+             {{#each this.chuyenmuc}}
+             <option >{{NameCategory}}</option>
+             {{/each}}
+            </select>
+        <label for="txtFullDes">Description</label>
+        <textarea class="form-control" id="txtContext" name="Context"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>
+  </div>
+</div>
