@@ -9,7 +9,6 @@ var router = express.Router();
 router.get('/', (req, res) => {
     var p = userModel.all();
     p.then(rows => {
-        console.log(rows);
         res.render('admin/vwUser/index', {
             users: rows
         });
@@ -29,7 +28,7 @@ router.get('/edit/:id', (req, res) => {
         if (rows.length > 0) {
             res.render('admin/vwUser/edit', {
                 error: false,
-                category: rows[0]
+                user: rows[0]
             });
         } else {
             res.render('admin/vwUser/edit', { error: true });
@@ -69,8 +68,21 @@ router.post('/add', (req, res) => {
 })
 
 router.post('/update', (req, res) => {
-    userModel.update(req.body)
+    var entity = {
+        userid: req.body.userid,
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+        permission: req.body.permission,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        nickname: req.body.nickname,
+        dob: dob,
+        registerdate: currDate
+    };
+    userModel.update(entity)
     .then(n => {
+        console.log(n + "rows was updated.");
         res.redirect('/admin/user');
     }).catch(err => {
         console.log(err);
@@ -80,6 +92,7 @@ router.post('/update', (req, res) => {
 router.post('/delete', (req, res) => {
     userModel.delete(req.body.CatID)
     .then(n => {
+        console.log(n + "rows was deleted.");
         res.redirect('/admin/user');
     }).catch(err => {
         console.log(err);
