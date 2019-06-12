@@ -1,0 +1,41 @@
+<div class="card shadow">
+    <h4 class="card-header">Categories
+
+    </h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Họ</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">Quyền truy cập</th>
+                <th scope="col" class="text-right">
+                    <a class="btn btn-outoutline-success" href="/admin/user/add" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add Category
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this.users}}
+            <tr>
+                <th scope="row">{{UserID}}</th>
+                <td>{{Username}}</td>
+                <td>{{LastName}}</td>
+                <td>{{FirstName}}</td>
+                <td>{{Email}}</td>
+                <td>{{Permission}}</td>
+                <td class="text-right">
+                    <a class="btn btn-primary btn-sm" href="javascript:;" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
