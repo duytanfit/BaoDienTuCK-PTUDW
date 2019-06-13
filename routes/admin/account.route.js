@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 var moment = require('moment');
 var passport = require('passport');
 var userModel = require('../../models/user.model');
+var auth = require('../../middlewares/auth');
 
 var router = express.Router();
 
@@ -67,6 +68,11 @@ router.post('/login', (req, res, next) => {
         return res.redirect('/');
       });
     })(req, res, next);
-  })
+})
+
+router.get('/profile', auth, (req, res, next) => {
+  res.end('profile');
+  console.log(req.user.IDUser);
+})
 
 module.exports = router;

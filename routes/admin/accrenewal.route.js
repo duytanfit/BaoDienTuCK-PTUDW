@@ -1,12 +1,12 @@
 var express = require('express');
 var moment = require('moment');
 var temp = require('../../models/accrenewal.model');
-
+var auth = require('../../middlewares/auth');
 
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/',auth, (req, res) => {
     var p = temp.all();
     p.then(rows => {
         console.log(rows);
