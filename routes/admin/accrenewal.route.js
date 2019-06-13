@@ -41,8 +41,8 @@ router.get('/update/:id', (req, res) => {
 })
 router.post('/dateupdate', (req,res) =>{
     //var dob = moment(req.body.EXP, 'DD/MM/YYYY').format('YY-MM-DD');
-    console.log(req.body.EXP);
-    console.log(req.body.IDUser);
+    console.log(req.body.EXP + "lalala");
+    console.log(req.body.IDUser + "lalala");
    
     temp.update(req.body.EXP,req.body.IDUser)
     .then (n =>{

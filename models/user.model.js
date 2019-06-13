@@ -1,4 +1,4 @@
-var db = require('../utils/db');
+var db = require('../utils/user');
 
 module.exports = {
 	all: () => {
@@ -10,7 +10,7 @@ module.exports = {
 	},
 
 	singleByUserName: userName => {
-		return db.load(`select * from user where Username = '${Username}'`);
+		return db.load(`select * from user where IDUser = '${userName}'`);
 	},
 
 	add: entity => {
