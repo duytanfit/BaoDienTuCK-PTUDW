@@ -6,12 +6,14 @@ var auth = require('../../middlewares/auth');
 var router = express.Router();
 
 
-router.get('/',auth, (req, res) => {
+router.get('/', (req, res) => {
     var p = temp.all();
     p.then(rows => {
         console.log(rows);
         res.render('admin/vwAccrenewal/listuser', {
+            layout: 'dashboard.hbs',
             listsub: rows
+           
         });
     }).catch(err => {
         console.log(err);
@@ -24,11 +26,13 @@ router.get('/update/:id', (req, res) => {
         
         if(rows.length >= 0){
             res.render('admin/vwAccrenewal/update', {
+                layout: 'dashboard.hbs',
                 error: false,
                 viewID: rows[0],
             });
         } else {
             res.render('admin/vwPerCategory/update', {
+                layout: 'dashboard.hbs',
                 error: true
             });
         }

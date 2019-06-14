@@ -75,4 +75,9 @@ router.get('/profile', auth, (req, res, next) => {
   console.log(req.user.IDUser);
 })
 
+router.post('/logout',  (req, res, next) => {
+  req.logOut();
+  res.redirect('/account/login');
+})
+
 module.exports = router;

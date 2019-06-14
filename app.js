@@ -9,13 +9,18 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+
+
 require('./middlewares/view-engine')(app);
 require('./middlewares/session')(app);
 require('./middlewares/passport')(app);
 
+app.use(require('./middlewares/auth-locals.mdw'));
+
 app.get('/', function(req, res) {
     res.render('home');
 });
+
 
 //app.use('/admin/categories', require('./routes/admin/category.route'));
 
